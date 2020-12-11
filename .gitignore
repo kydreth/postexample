@@ -1,0 +1,46 @@
+# api dependencies
+/api/dist
+/api/tmp
+/api/out-tsc
+/api/out
+/api/build
+/api/.gradle
+/api/build/
+/api/!gradle/wrapper/gradle-wrapper.jar
+/api/!**/src/main/**/build/
+/api/!**/src/test/**/build/
+
+# web dependencies
+/web/node_modules
+/web/dist
+
+# IDEs and editors
+*.idea
+.gradle
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.iml
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+.vagrant
+.DS_Store
+Thumbs.db
+*/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+/e2e/*.js
+/e2e/*.map

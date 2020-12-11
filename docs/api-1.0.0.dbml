@@ -1,0 +1,47 @@
+Table "posts" {
+  "id" bigserial [pk, not null]
+  "title" text [not null]
+  "description" text [not null]
+  "businessCase" text
+  "created_at" timestamp [not null, default: `current_timestamp`]
+  "updated_at" timestamp [not null, default: `current_timestamp`]
+}
+
+Table "comments" {
+  "id" bigserial [pk, not null]
+  "description" text [not null]
+  "post_id" bigint [not null]
+  "created_at" timestamp [not null, default: `current_timestamp`]
+  "updated_at" timestamp [not null, default: `current_timestamp`]
+}
+
+Table "users" {
+  "id" bigserial [pk, not null]
+  "name_first" text [not null]
+  "name_last" text [not null]
+  "email" text [unique, not null]
+  "phone" text
+  "password" text [not null]
+  "created_at" timestamp [not null, default: `current_timestamp`]
+  "updated_at" timestamp [not null, default: `current_timestamp`]
+}
+
+Table "roles" {
+  "id" bigserial [pk, not null]
+  "name" text [unique, not null]
+}
+
+Table "user_roles" {
+  "user_id" bigint [not null]
+  "role_id" bigint [not null]
+
+Indexes {
+  (user_id, role_id) [pk]
+}
+}
+
+Ref:"posts"."id" < "comments"."post_id"
+
+Ref:"users"."id" < "user_roles"."user_id"
+
+Ref:"roles"."id" < "user_roles"."role_id"

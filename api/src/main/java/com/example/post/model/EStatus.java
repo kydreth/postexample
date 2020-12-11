@@ -1,0 +1,12 @@
+package com.example.post.model;
+
+public enum EStatus {
+    STATUS_DRAFT,
+    STATUS_SUBMITTED,
+    STATUS_REVIEWED,
+    STATUS_IN_PROGRESS,
+    STATUS_TESTED,
+    STATUS_DEPLOYED,
+    STATUS_COMPLETED,
+    STATUS_ARCHIVED
+}

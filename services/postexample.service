@@ -1,0 +1,11 @@
+[Unit]
+Description=Post Example service: postgres, pgadmin, nginx + certbot via docker-compose
+After=network.target docker.service
+[Service]
+Type=simple
+WorkingDirectory=/opt/postexample/
+ExecStart=/usr/local/bin/docker-compose -f /opt/postexample/docker-compose.yml up
+ExecStop=/usr/local/bin/docker-compose -f /opt/postexample/docker-compose.yml down
+Restart=always
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-header card-header-tabs card-header-primary">
+        <a mat-button class="nav-link active" href="#profile" data-toggle="tab">
+            <i class="material-icons">comment</i> Comments
+            <div class="ripple-container"></div>
+        </a>
+    </div>
+    <div class="card-body">
+        <ng-container *ngIf="selectedPost">
+            <div *ngFor="let comment of comments" class="row">
+                <div class="col-md-12 text-with-new-lines">{{comment.description}}</div>
+                <div class="col-md-12">
+                    <a *ngIf="comment.user" href="mailto:{{comment.user.email}}" target="_blank">
+                        {{comment.user.nameLast}}, {{comment.user.nameFirst}}
+                    </a>
+                    at <span>{{comment.createdAt | date:'yyyy-MM-dd'}}</span>
+                    <span *ngIf="comment.createdAt !== comment.updatedAt">(edited)</span>
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+        </ng-container>
+        <form #form='ngForm' *ngIf="selectedPost" (ngSubmit)="addComment()">
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                        <textarea
+                                matInput
+                                cdkTextareaAutosize
+                                name="description"
+                                type='text'
+                                placeholder="Comment"
+                                required
+                                [(ngModel)]="comment.description"
+                                (keyup)="triggerResize($event)"
+                                cdkAutosizeMinRows="1"
+                                cdkAutosizeMaxRows="50"
+                        ></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <button mat-raised-button type="button" (click)="resetComment()" class="btn btn-grey pull-left">Clear
+                </button>
+                <button mat-raised-button type="submit" class="btn btn-primary pull-right">Save Comment</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,210 @@
+<div class="main-content">
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-xl-6">
+				<div class='card'>
+					<div class="card-header card-header-primary">
+						<h4 class='card-title'>Register</h4>
+					</div>
+					<div class="card-body">
+						<div class=''>
+							Welcome to <a href="http://example.com" target="_blank">Post Example</a>
+							<ul>
+								<li>If you were referred here, please register below. </li>
+								<li>If you were invited via email, your account is already created. Please use the login page and it will ask you to change your password on first login.</li>
+							</ul>
+						</div>
+						<form
+								*ngIf="!isSuccessful"
+								name="form"
+								(ngSubmit)="f.form.valid && onSubmit()"
+                                #f="ngForm"
+								novalidate
+						>
+							<span class="mat-body-2">Credentials</span>
+							<br>
+							<div class="row">
+								<div class='form-group col-md-6'>
+									<input
+											type="email"
+											class="form-control"
+											name="email"
+											placeholder="Email"
+											autocomplete="email"
+											[(ngModel)]="form.email"
+											required
+											email
+                                            #email="ngModel"
+									/>
+									<div class="alert-danger" *ngIf="f.submitted && email.invalid">
+										<div *ngIf="email.errors.required">Email is required</div>
+										<div *ngIf="email.errors.email">
+											Email must be a valid email address
+										</div>
+									</div>
+								</div>
+								<div class='form-group col-md-6'>
+									<input
+											type="password"
+											class="form-control"
+											name="password"
+											placeholder="Password"
+											autocomplete="new-password"
+											[(ngModel)]="form.password"
+											required
+											minlength="8"
+											#password="ngModel"
+									/>
+									<div class="alert-danger" *ngIf="f.submitted && password.invalid">
+										<div *ngIf="password.errors.required">Password is required</div>
+										<div *ngIf="password.errors.minlength">
+											Password must be at least 8 characters
+										</div>
+									</div>
+								</div>
+							</div>
+							<span class="mat-body-2">Contact</span>
+							<br>
+							<div class="row">
+								<div class='form-group col-md-6'>
+									<input
+											type="text"
+											class="form-control"
+											name="nameFirst"
+											placeholder="First Name"
+											autocomplete="given-name"
+											[(ngModel)]="form.nameFirst"
+											required
+											#nameFirst="ngModel"
+									/>
+									<div class="alert-danger" *ngIf="f.submitted && nameFirst.invalid">
+										<div *ngIf="nameFirst.errors.required">First Name is required</div>
+									</div>
+								</div>
+								<div class='form-group col-md-6'>
+									<input
+											type="text"
+											class="form-control"
+											name="nameLast"
+											placeholder="Last Name"
+											autocomplete="family-name"
+											[(ngModel)]="form.nameLast"
+											required
+											#nameLast="ngModel"
+									/>
+									<div class="alert-danger" *ngIf="f.submitted && nameLast.invalid">
+										<div *ngIf="nameLast.errors.required">Last Name is required</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class='form-group col-md-6'>
+									<input
+											type="tel"
+											class="form-control"
+											name="phone"
+											placeholder="Phone"
+											autocomplete="tel"
+											[(ngModel)]="form.phone"
+											required
+											tel
+											#phone="ngModel"
+									/>
+									<div class="alert-danger" *ngIf="f.submitted && phone.invalid">
+										<div *ngIf="phone.errors.required">Phone is required</div>
+										<div *ngIf="phone.errors.phone">
+											Phone must be a valid phone address
+										</div>
+									</div>
+								</div>
+							</div>
+							<span class="mat-body-2">Additional Information</span>
+							<br>
+							<div class="row">
+								<div class='form-group col-md-6'>
+									<input
+											type="text"
+											class="form-control"
+											name="customer"
+											placeholder="Customer"
+											autocomplete="customer"
+											[(ngModel)]="form.customer"
+									/>
+								</div>
+								<div class='form-group col-md-6'>
+									<input
+											type="text"
+											class="form-control"
+											name="contract"
+											placeholder="Contract"
+											autocomplete="contract"
+											[(ngModel)]="form.contract"
+									/>
+								</div>
+							</div>
+							<div class="row">
+								<div class='form-group col-md-6'>
+									<input
+											type="text"
+											class="form-control"
+											name="division"
+											placeholder="Division"
+											autocomplete="division"
+											[(ngModel)]="form.division"
+									/>
+								</div>
+							</div>
+							<div class="row">
+								<div class='form-group col-md-6'>
+									<input
+											type="text"
+											class="form-control"
+											name="jobTitle"
+											placeholder="Job Title"
+											autocomplete="jobTitle"
+											[(ngModel)]="form.jobTitle"
+									/>
+								</div>
+								<div class='form-group col-md-6'>
+									<input
+											type="text"
+											class="form-control"
+											name="location"
+											placeholder="Location"
+											autocomplete="location"
+											[(ngModel)]="form.location"
+									/>
+								</div>
+							</div>
+							<div class="row">
+								<div class='form-group col'>
+									<textarea
+											matInput
+											type="text"
+											class="form-control"
+											name="biography"
+											placeholder="Quick Biography / Background"
+											autocomplete="biography"
+											[(ngModel)]="form.biography"
+									></textarea>
+								</div>
+							</div>
+							<div class="row">
+								<div class='form-group col'>
+									<button class="btn btn-primary btn-block">Register new account</button>
+									<div class="alert alert-warning" *ngIf="f.submitted && isRegistrationFailed">
+										Registration failed!<br/>{{ errorMessage }}
+									</div>
+								</div>
+							</div>
+						</form>
+
+						<div class="alert alert-success" *ngIf="isSuccessful">
+							Please check your email to verify your account.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

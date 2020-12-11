@@ -1,0 +1,39 @@
+<div class="main-content">
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-xl-6">
+				<div class="card">
+					<div class="card-header card-header-tabs card-header-primary">
+						<a mat-button class="nav-link active" href="#profile" data-toggle="tab">
+							<i class="material-icons">group</i> Users
+							<div class="ripple-container"></div>
+						</a>
+					</div>
+					<div class="card-body">
+						<mat-accordion>
+							<mat-expansion-panel *ngFor="let user of users" (opened)="setSelectedUser(user)">
+								<mat-expansion-panel-header>
+									<mat-panel-title>
+										{{user.nameLast}}, {{user.nameFirst}}
+									</mat-panel-title>
+								</mat-expansion-panel-header>
+								<!--                                <mat-action-row>-->
+								<!--                                    <button mat-button color="primary" (click)="editPost(user.id)">Edit</button>-->
+								<!--                                    <button mat-button color="primary" (click)="viewPost(user.id)">View</button>-->
+								<!--                                </mat-action-row>-->
+							</mat-expansion-panel>
+						</mat-accordion>
+						<!-- DEBUG: {{selectedUser | json}} -->
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-6">
+				<app-user
+						[displayUser]="selectedUser"
+						readOnly="false"
+						cardTitle="User Info"
+				></app-user>
+			</div>
+		</div>
+	</div>
+</div>

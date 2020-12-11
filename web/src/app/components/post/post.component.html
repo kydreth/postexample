@@ -1,0 +1,125 @@
+<script src="../posts/posts.component.ts"></script>
+<div class="main-content">
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-xl-6">
+				<div class="card">
+					<div class="card-header card-header-tabs card-header-primary">
+						<a mat-button class="nav-link active" href="#profile" data-toggle="tab">
+							<i class="material-icons">emoji_objects</i> {{this.title}}
+							<div class="ripple-container"></div>
+						</a>
+					</div>
+					<div class="card-body">
+						<div class="tab-content">
+							<div class="tab-pane active form-group" id="profile">
+
+								<div *ngIf="add === true" class=''>
+									Add Post
+								</div>
+								<form #form='ngForm' (ngSubmit)="onSubmit()">
+									<ng-container *ngIf="readOnly()">
+										<div class="row">
+											<div class='col-md-6'>
+												<span class="mat-body-2">Status</span>
+												<br>
+												<p *ngIf="post.status">{{post.displayStatus()}}</p>
+											</div>
+											<div class='col-md-6'>
+												<span class="mat-body-2">Authored By</span>
+												<br>
+												<a *ngIf="post.user" href="mailto:{{post.user.email}}" target="_blank">
+													{{post.user.nameLast}}, {{post.user.nameFirst}}
+												</a>
+											</div>
+										</div>
+									</ng-container>
+									<div class="row">
+										<div class='col-md-12'>
+											<ng-container *ngIf="readOnly()">
+												<span class="mat-body-2">Title</span>
+												<br>
+												<p>{{post.title}}</p>
+											</ng-container>
+											<ng-container  *ngIf="!readOnly()">
+												<mat-form-field class="example-full-width">
+													<input
+															matInput
+															name="title"
+															type='text'
+															placeholder="Title"
+															[(ngModel)]="post.title"
+															required
+													>
+												</mat-form-field>
+											</ng-container>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<ng-container *ngIf="readOnly()">
+												<span class="mat-body-2">Description</span>
+												<br>
+												<div class="text-with-new-lines">{{post.description}}</div>
+											</ng-container>
+											<ng-container  *ngIf="!readOnly()">
+												<mat-form-field class="example-full-width">
+                                                    <textarea
+															matInput
+															cdkTextareaAutosize
+                                                            #autosize="cdkTextareaAutosize"
+															name="postDescription"
+															type='text'
+															placeholder="Description"
+															[(ngModel)]="post.description"
+															(keyup)="triggerResize($event)"
+															cdkAutosizeMinRows="1"
+															cdkAutosizeMaxRows="50"
+															required
+													></textarea>
+												</mat-form-field>
+											</ng-container>
+										</div>
+									</div>
+									<!--                                    <div class="row">-->
+									<!--                                        <div class = 'col-md-12'>-->
+									<!--                                            <mat-form-field class="example-full-width">-->
+									<!--                                                <input ngModel formControlName="businessCase" name="businessCase" type = 'text' value = '' placeholder="Business Case" class = 'form-control'>-->
+									<!--                                            </mat-form-field>-->
+									<!--                                        </div>-->
+									<!--                                    </div>-->
+									<!--                                    <div class="row">-->
+									<!--                                        <div class = 'col-md-12'>-->
+									<!--                                            <mat-form-field class="example-full-width">-->
+									<!--                                                <input ngModel formControlName="relatedProducts" name="relatedProducts" type = 'text' value = '' placeholder="Related Products" class = 'form-control'>-->
+									<!--                                            </mat-form-field>-->
+									<!--                                        </div>-->
+									<!--                                    </div>-->
+									<!--                                    <div class="row">-->
+									<!--                                        <div class = 'col-md-12'>-->
+									<!--                                            <mat-form-field class="example-full-width">-->
+									<!--                                                <input ngModel formControlName="community" name="community" type = 'text' value = '' placeholder="Community" class = 'form-control'>-->
+									<!--                                            </mat-form-field>-->
+									<!--                                        </div>-->
+									<!--                                    </div>-->
+									<ng-container *ngIf='view === false'>
+										<button *ngIf='add === true' mat-raised-button type="button" (click)="clearPost()"
+												class="btn btn-grey pull-left">Clear
+										</button>
+										<button mat-raised-button type="submit" class="btn btn-primary pull-right">
+											<ng-container *ngIf="add">Add Post</ng-container>
+											<ng-container *ngIf="edit">Save Changes</ng-container>
+										</button>
+									</ng-container>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ng-container *ngIf="view">
+				<app-comments class="col-xl-6" [selectedPost]="post"></app-comments>
+			</ng-container>
+		</div>
+	</div>
+</div>

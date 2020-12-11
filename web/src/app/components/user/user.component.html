@@ -1,0 +1,272 @@
+<div class="card">
+	<div class="card-header card-header-tabs card-header-primary">
+		<a mat-button class="nav-link active" href="#profile" data-toggle="tab">
+			<i class="material-icons">person</i> {{cardTitle}}
+			<div class="ripple-container"></div>
+		</a>
+	</div>
+	<div class="card-body">
+		<form
+            #f="ngForm"
+			(ngSubmit)="f.form.valid && onSubmit()"
+			*ngIf="displayUser"
+			name="form"
+			novalidate
+		>
+			<span class="mat-body-2">Credentials</span>
+			<br>
+			<div class="row">
+				<div class="col-sm-6">
+					<ng-container *ngIf="isReadOnly()">
+						<span class="mat-body-2">Email</span>
+						<br>
+						<p>{{displayUser.email}}</p>
+					</ng-container>
+					<ng-container  *ngIf="!isReadOnly()">
+						<mat-form-field class="example-full-width">
+						<input
+								[(ngModel)]="displayUser.email"
+								disabled
+								matInput
+								name='email'
+								placeholder="Email address"
+								type="email"
+						/>
+						</mat-form-field>
+					</ng-container>
+				</div>
+				<div class="col-sm-6">
+					<ng-container *ngIf="isReadOnly()">
+						<span class="mat-body-2">Password</span>
+						<br>
+						<p></p>
+					</ng-container>
+					<ng-container  *ngIf="!isReadOnly()">
+						<mat-form-field class="example-full-width">
+							<input
+									[(ngModel)]="displayUser.password"
+									disabled
+									matInput
+									name='password'
+									placeholder="Password"
+									type="password"
+							/>
+						</mat-form-field>
+					</ng-container>
+				</div>
+			</div>
+			<span class="mat-body-2">Contact</span>
+			<br>
+			<div class="row">
+				<div class="col-sm-6">
+					<ng-container *ngIf="isReadOnly()">
+						<span class="mat-body-2">Fist Name</span>
+						<br>
+						<p>{{displayUser.nameFirst}}</p>
+					</ng-container>
+					<ng-container  *ngIf="!isReadOnly()">
+						<mat-form-field class="example-full-width">
+							<input
+									[(ngModel)]="displayUser.nameFirst"
+									matInput
+									name="nameFirst"
+									placeholder="Fist Name"
+									type="text"
+							/>
+						</mat-form-field>
+					</ng-container>
+				</div>
+				<div class="col-sm-6">
+					<ng-container *ngIf="isReadOnly()">
+						<span class="mat-body-2">Last Name</span>
+						<br>
+						<p>{{displayUser.nameLast}}</p>
+					</ng-container>
+					<ng-container  *ngIf="!isReadOnly()">
+						<mat-form-field class="example-full-width">
+							<input
+									[(ngModel)]="displayUser.nameLast"
+									matInput
+									name='nameLast'
+									placeholder="Last Name"
+									type="text"
+							/>
+						</mat-form-field>
+					</ng-container>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<ng-container *ngIf="isReadOnly()">
+						<span class="mat-body-2">Phone</span>
+						<br>
+						<p>{{displayUser.phone}}</p>
+					</ng-container>
+					<ng-container  *ngIf="!isReadOnly()">
+						<mat-form-field class="example-full-width">
+							<input
+									[(ngModel)]="displayUser.phone"
+									matInput
+									name='phone'
+									placeholder="Phone"
+									type='tel'
+							/>
+						</mat-form-field>
+					</ng-container>
+				</div>
+			</div>
+			<span class="mat-body-2">Additional Information</span>
+			<br>
+			<div class="row">
+				<div class='form-group col-sm-6'>
+					<ng-container *ngIf="isReadOnly()">
+						<span class="mat-body-2">Customer</span>
+						<br>
+						<p>{{displayUser.customer}}</p>
+					</ng-container>
+					<ng-container  *ngIf="!isReadOnly()">
+						<mat-form-field class="example-full-width">
+							<input
+									[(ngModel)]="displayUser.customer"
+									matInput
+									name="customer"
+									placeholder="Customer"
+									type="text"
+							/>
+						</mat-form-field>
+					</ng-container>
+				</div>
+				<div class='form-group col-sm-6'>
+					<ng-container *ngIf="isReadOnly()">
+						<span class="mat-body-2">Contract</span>
+						<br>
+						<p>{{displayUser.contract}}</p>
+					</ng-container>
+					<ng-container  *ngIf="!isReadOnly()">
+						<mat-form-field class="example-full-width">
+							<input
+									[(ngModel)]="displayUser.contract"
+									matInput
+									name="contract"
+									placeholder="Contract"
+									type="text"
+							/>
+						</mat-form-field>
+					</ng-container>
+				</div>
+			</div>
+			<div class="row">
+				<div class='form-group col-sm-6'>
+					<ng-container *ngIf="isReadOnly()">
+						<span class="mat-body-2">Division</span>
+						<br>
+						<p>{{displayUser.division}}</p>
+					</ng-container>
+					<ng-container  *ngIf="!isReadOnly()">
+						<mat-form-field class="example-full-width">
+							<input
+									[(ngModel)]="displayUser.division"
+									matInput
+									name="division"
+									placeholder="Division"
+									type="text"
+							/>
+						</mat-form-field>
+					</ng-container>
+				</div>
+			</div>
+			<div class="row">
+				<div class='form-group col-sm-6'>
+					<ng-container *ngIf="isReadOnly()">
+						<span class="mat-body-2">Job Title</span>
+						<br>
+						<p>{{displayUser.jobTitle}}</p>
+					</ng-container>
+					<ng-container  *ngIf="!isReadOnly()">
+						<mat-form-field class="example-full-width">
+							<input
+									[(ngModel)]="displayUser.jobTitle"
+									matInput
+									name="jobTitle"
+									placeholder="Job Title"
+									type="text"
+							/>
+						</mat-form-field>
+					</ng-container>
+				</div>
+				<div class='form-group col-sm-6'>
+					<ng-container *ngIf="isReadOnly()">
+						<span class="mat-body-2">Location</span>
+						<br>
+						<p>{{displayUser.location}}</p>
+					</ng-container>
+					<ng-container  *ngIf="!isReadOnly()">
+						<mat-form-field class="example-full-width">
+							<input
+									[(ngModel)]="displayUser.location"
+									matInput
+									name="location"
+									placeholder="Location"
+									type="text"
+							/>
+						</mat-form-field>
+					</ng-container>
+				</div>
+			</div>
+			<div class="row">
+				<div class='form-group col-md-12'>
+					<ng-container *ngIf="isReadOnly()">
+						<span class="mat-body-2">Quick Biography / Background</span>
+						<br>
+						<p>{{displayUser.biography}}</p>
+					</ng-container>
+					<ng-container  *ngIf="!isReadOnly()">
+						<mat-form-field class="example-full-width">
+							<textarea
+									[(ngModel)]="displayUser.biography"
+									matInput
+									cdkTextareaAutosize
+									name="biography"
+									placeholder="Quick Biography / Background"
+									type="text"
+									(keyup)="triggerResize($event)"
+									cdkAutosizeMinRows="1"
+									cdkAutosizeMaxRows="500"
+							></textarea>
+						</mat-form-field>
+					</ng-container>
+				</div>
+			</div>
+			<div *ngIf="loggedInUserIsAnAdmin && displayUser.roles" class="row">
+				<div class="col-md-12">
+					<ng-container *ngIf="isReadOnly()">
+						<span class="mat-body-2">Roles</span>
+						<br>
+						<p *ngFor="let role of roles | keyvalue">
+							{{role.value}}
+						</p>
+					</ng-container>
+					<ng-container  *ngIf="!isReadOnly()">
+						<mat-select
+								[(ngModel)]="displayUser.roles"
+								[compareWith]="compareRoles"
+								class="example-full-width"
+								multiple
+								name='roles[]'
+								placeholder="User Roles"
+						>
+							<mat-option *ngFor="let role of roles | keyvalue" [value]='role.value'>
+								{{role.value}}
+							</mat-option>
+						</mat-select>
+					</ng-container>
+				</div>
+			</div>
+			<ng-container  *ngIf="!isReadOnly()">
+				<button class="btn btn-danger pull-right" mat-raised-button type="submit">Update Profile</button>
+				<div class="clearfix"></div>
+			</ng-container>
+		</form>
+		<!-- DEBUG: {{user | json}} -->
+	</div>
+</div>

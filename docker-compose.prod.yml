@@ -53,16 +53,17 @@ services:
     expose:
       - "5432"
     command: ["./wait-for-postgres.sh", "db"]
+# https://github.com/JonasAlfredsson/docker-nginx-certbot
   nginx-prod:
     container_name: nginx-prod
     hostname: nginx-prod
     restart: unless-stopped
-    image: staticfloat/nginx-certbot:latest
+    image: jonasal/nginx-certbot:latest
     networks:
       - web
     volumes:
       - ./nginx/prod.conf/nginx.prod.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/prod.conf.d:/etc/nginx/user.conf.d:ro
+      - ./nginx/prod.conf.d:/etc/nginx/user_conf.d:ro
       - letsencrypt:/etc/letsencrypt
     ports:
       - "80:80"
@@ -73,7 +74,7 @@ services:
       - "8082"
     environment:
       - CERTBOT_EMAIL=post@example.com
-      - IS_STAGING=0
+      - STAGING=1
 volumes:
   letsencrypt:
 networks:
